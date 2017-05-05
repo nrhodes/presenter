@@ -9,9 +9,9 @@
     console.log("minimum receiver");
     window.mediaElement = document.getElementById('media');
     window.mediaManager = new cast.receiver.MediaManager(window.mediaElement);
+    window.mediaManager['onLoadMetadataErrorOrig'] = window.mediaManager.onLoadMetadataError;
     window.mediaManager.onLoadMetadataError = function(event) {
         console.log("### Media Manager - LOAD METADATA ERROR: " + JSON.stringify(event));
-        setHudMessage('mediaManagerMessage', 'LOAD METADATA ERROR: ' + JSON.stringify(event));
         window.mediaManager['onLoadMetadataErrorOrig'](event);
     }
 
