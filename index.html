@@ -19,9 +19,10 @@
 
     window.mediaManager['onLoadOrig'] = window.mediaManager.onLoadMetadataLoaded;
     window.mediaManager.onLoad = function(event) {
-        console.log("### Media Manager - LOAD METADATA ERROR: " + JSON.stringify(event));
-	if (event.data.media.contentType.startsWith("image")) {
-	    $("#image").attr("src", event.media.contentId);
+        console.log("### Media Manager - LOAD: " + JSON.stringify(event));
+        var media = event.data.media;
+	if (media.contentType.startsWith("image")) {
+	    $("#image").attr("src", media.contentId);
 	    // TODO: add call that load succeeded
         } else {
             window.mediaManager['onLoad'](event);
