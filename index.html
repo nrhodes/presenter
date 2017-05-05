@@ -9,12 +9,12 @@
     console.log("minimum receiver");
     window.mediaElement = document.getElementById('media');
     window.mediaManager = new cast.receiver.MediaManager(window.mediaElement);
-    window.mediaManager.onLoadMetadataError = function(loadInfo) {
-        console.log("onLoadMetadataError");
-        console.log("senderId = " + loadInfo.senderId);
-        console.log("contentId = " + loadInfo.message.media.contentId);
-        console.log("contentType = " + loadInfo.message.media.contentType);
-    };
+    window.mediaManager.onLoadMetadataError = function(event) {
+        console.log("### Media Manager - LOAD METADATA ERROR: " + JSON.stringify(event));
+        setHudMessage('mediaManagerMessage', 'LOAD METADATA ERROR: ' + JSON.stringify(event));
+        window.mediaManager['onLoadMetadataErrorOrig'](event);
+    }
+
     window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
     /**
      * Application config
