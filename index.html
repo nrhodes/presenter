@@ -2,9 +2,11 @@
 <head>
   <title>Example minimum receiver</title>
   <script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
 <body>
-  <img id='media'/>
+  <img id='image'/>
+  <video id='media'/>
   <script>
     console.log("minimum receiver");
     window.mediaElement = document.getElementById('media');
@@ -14,6 +16,18 @@
         console.log("### Media Manager - LOAD METADATA ERROR: " + JSON.stringify(event));
         window.mediaManager['onLoadMetadataErrorOrig'](event);
     }
+
+    window.mediaManager['onLoadMetadataLoadedrig'] = window.mediaManager.onLoadMetadataLoaded;
+    window.mediaManager.onLoadMetadataLoaded = function(event) {
+        console.log("### Media Manager - LOAD METADATA ERROR: " + JSON.stringify(event));
+	if (event.media.contentType.startsWith("image")) {
+	    $("#image").attr("src", event.media.contentId);
+	    // TODO: add call that load succeeded
+        } else {
+            window.mediaManager['onLoadMetadataLoadedOrig'](event);
+        }
+    };
+
 
     window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
     /**
