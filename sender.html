@@ -25,7 +25,7 @@
       }
 
       //var mediaInfo = new chrome.cast.media.MediaInfo("https://nrhodes.github.io/presenter/headshot.jpg", "image/jpeg");
-      var mediaInfo = new chrome.cast.media.MediaInfo("https://clips.vorwaerts-gmbh.de/VfE_html5.mp4", "video/mp4");
+      var mediaInfo = new chrome.cast.media.MediaInfo("https://nrhodes.github.io/presenter/headshot.jpg", "image/jpeg");
       var request = new chrome.cast.media.LoadRequest(mediaInfo);
       castSession.loadMedia(request).then(
                 function() { console.log('Load succeed'); },
