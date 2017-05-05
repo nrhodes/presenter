@@ -17,14 +17,14 @@
         window.mediaManager['onLoadMetadataErrorOrig'](event);
     }
 
-    window.mediaManager['onLoadMetadataLoadedrig'] = window.mediaManager.onLoadMetadataLoaded;
-    window.mediaManager.onLoadMetadataLoaded = function(event) {
+    window.mediaManager['onLoadOrig'] = window.mediaManager.onLoadMetadataLoaded;
+    window.mediaManager.onLoad = function(event) {
         console.log("### Media Manager - LOAD METADATA ERROR: " + JSON.stringify(event));
 	if (event.media.contentType.startsWith("image")) {
 	    $("#image").attr("src", event.media.contentId);
 	    // TODO: add call that load succeeded
         } else {
-            window.mediaManager['onLoadMetadataLoadedOrig'](event);
+            window.mediaManager['onLoad'](event);
         }
     };
 
