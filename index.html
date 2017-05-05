@@ -6,6 +6,7 @@
 <body>
   <video id='media'/>
   <script>
+    console.log("minimum receiver");
     window.mediaElement = document.getElementById('media');
     window.mediaManager = new cast.receiver.MediaManager(window.mediaElement);
     window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
