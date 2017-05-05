@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<script type="text/javascript"
+    src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+
+<script>
+    window['__onGCastApiAvailable'] = function(isAvailable) {
+      if (isAvailable) {
+          initializeCastApi();
+      }
+    };
+    
+    var castSession;
+
+    initializeCastApi = function() {
+      cast.framework.CastContext.getInstance().setOptions({
+          receiverApplicationId: 0B0596D7,
+          autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
+      );
+      castSession = cast.framework.CastContext.getInstance().getCurrentSession();
+
+    };
+
+    loadButtonClicked = function() {
+      var mediaInfo = new chrome.cast.media.MediaInfo("http://4.bp.blogspot.com/-k9V7eeTPcz4/UUD4JYIRsNI/AAAAAAAAFUc/iKQZDztO1pE/s1600/reggiana+toro.jpg", "image/jpeg");
+      var request = new chrome.cast.media.LoadRequest(mediaInfo);
+      castSession.loadMedia(request).then(
+                function() { console.log('Load succeed'); },
+                  function(errorCode) { console.log('Error code: ' + errorCode); });
+    }
+
+
+
+</script>
+
+</HEAD>
+<BODY>
+Sender
+<BR>
+<button is="google-cast-button">cast button</button>
+<button onclick="loadbuttonclicked()">load</button>
+</BODY>
+</HTML
